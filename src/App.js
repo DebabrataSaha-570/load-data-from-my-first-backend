@@ -27,8 +27,17 @@ function App() {
       headers: {
         "Content-Type": 'application/json'
       },
-      body: JSON.stringify(newUser)
+      body: JSON.stringify(newUser),
     })
+      .then(res => res.json())
+      .then(data => {
+        const addedUser = data;
+        const newUsers = [...users, addedUser]
+        setUsers(newUsers)
+      })
+
+    nameRef.current.value = ''
+    emailRef.current.value = ''
 
   }
   return (
